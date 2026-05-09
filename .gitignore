@@ -4,14 +4,11 @@
 .3d-interactive-effects/
 .vscode/
 
-# Ignore extra images
-*.jpeg
-*.jpg
-*.png
-
-# Keep only these essential files
+# Keep essential files
 !index.html
 !style.css
 !script.js
 !robots.txt
 !sitemap.xml
+!hero-bg.jpg
+!amelia-soeiro-sobre.jpg
