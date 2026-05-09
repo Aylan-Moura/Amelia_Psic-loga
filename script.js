@@ -1,27 +1,36 @@
 /**
  * Premium Corporate Site - Interactive Features
- * Elegant animations for Amelia Psicolologa website
+ * Optimized for performance
  */
 
 (function() {
     'use strict';
 
+    // Throttle helper for scroll events
+    const throttle = (func, limit) => {
+        let inThrottle;
+        return function() {
+            if (!inThrottle) {
+                func.apply(this, arguments);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    };
+
     // ============================================
-    // Header Scroll Effect
+    // Header Scroll Effect (optimized)
     // ============================================
     const initHeaderScroll = () => {
         const header = document.querySelector('.header');
         if (!header) return;
 
-        window.addEventListener('scroll', () => {
+        const onScroll = throttle(() => {
             const currentScroll = window.pageYOffset;
+            header.classList.toggle('scrolled', currentScroll > 50);
+        }, 100);
 
-            if (currentScroll > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        window.addEventListener('scroll', onScroll, { passive: true });
     };
 
     // ============================================
@@ -58,46 +67,43 @@
         const mobileLinks = document.querySelectorAll('.mobile-menu__nav a');
 
         if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
+            const toggleMenu = () => {
                 const isActive = mobileMenu.classList.contains('active');
                 mobileMenu.classList.toggle('active');
                 mobileToggle.classList.toggle('active');
                 document.body.style.overflow = isActive ? '' : 'hidden';
-            });
+            };
+
+            mobileToggle.addEventListener('click', toggleMenu);
 
             if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
+                closeBtn.addEventListener('click', toggleMenu);
             }
 
             mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('active');
-                    mobileToggle.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
+                link.addEventListener('click', toggleMenu);
             });
         }
     };
 
     // ============================================
-    // Parallax Effect for Hero
+    // Parallax Effect for Hero (optimized with throttle)
     // ============================================
     const initParallax = () => {
         const hero = document.querySelector('.hero');
         if (!hero) return;
 
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroBg = hero.querySelector('.hero__background');
+        const heroBg = hero.querySelector('.hero__background');
+        if (!heroBg) return;
 
-            if (heroBg && scrolled < window.innerHeight) {
+        const onScroll = throttle(() => {
+            const scrolled = window.pageYOffset;
+            if (scrolled < window.innerHeight) {
                 heroBg.style.transform = `translateY(${scrolled * 0.3}px)`;
             }
-        });
+        }, 16);
+
+        window.addEventListener('scroll', onScroll, { passive: true });
     };
 
     // ============================================
