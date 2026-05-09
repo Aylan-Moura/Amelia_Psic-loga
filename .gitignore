@@ -1,0 +1,17 @@
+# Ignore folders
+.premium-site-enhancer/
+.seo-optimizer/
+.3d-interactive-effects/
+.vscode/
+
+# Ignore extra images
+*.jpeg
+*.jpg
+*.png
+
+# Keep only these essential files
+!index.html
+!style.css
+!script.js
+!robots.txt
+!sitemap.xml
