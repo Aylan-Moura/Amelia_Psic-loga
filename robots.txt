@@ -1,0 +1,23 @@
+# Robots.txt - Amélia Soeiro Psicóloga
+
+User-agent: *
+Allow: /
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://ameliasoeiro.com.br/sitemap.xml
+
+# Crawl-delay (optional - be nice to server)
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/

@@ -1,0 +1,35 @@
+{
+  "skill_name": "premium-site-enhancer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Meu site de psicologia está muito básico. Preciso deixá-lo mais moderno e profissional com uma foto grande no mobile. Pode melhorar?",
+      "expected_output": "HTML/CSS/JS premium com foto grande no mobile (min 70vh), animações sofisticadas, design moderno e cores premium",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Quero criar um portfólio do zero com design premium, foto grande no mobile e animações modernas.",
+      "expected_output": "Site completo com grid de portfólio, hero grande no mobile, fade-in animations, hover effects, tipografia elegante",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Preciso de uma loja virtual moderna com design premium, foto grande no mobile e cards de produtos animadas.",
+      "expected_output": "E-commerce com grid de produtos, hero 80vh no mobile, animações hover, design responsivo premium",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Crie uma landing page para advogado com design premium, foto grande no mobile e animações suaves.",
+      "expected_output": "Landing page profissional com hero grande, tipografia sofisticada, animações CSS/JS, design responsivo",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Tenho um blog antigo. Quero transformá-lo em um site moderno com design premium e foto grande no mobile.",
+      "expected_output": "Blog reformulado com hero image grande, cards de posts animadas, design premium",
+      "files": []
+    }
+  ]
+}
