@@ -1,0 +1,14 @@
+# Ignore folders
+.premium-site-enhancer/
+.seo-optimizer/
+.3d-interactive-effects/
+.vscode/
+
+# Keep essential files
+!index.html
+!style.css
+!script.js
+!robots.txt
+!sitemap.xml
+!hero-bg.jpg
+!amelia-soeiro-sobre.jpg
