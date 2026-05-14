@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ameliapsicologa.com.br/sitemap.xml
