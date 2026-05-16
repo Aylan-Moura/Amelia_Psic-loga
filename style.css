@@ -140,13 +140,21 @@ img{max-width:100%;display:block}
 .clinica-content{max-width:900px;margin:0 auto}
 .clinica-text{text-align:center;margin-bottom:40px}
 .clinica-text p{color:var(--text-light);margin-bottom:12px;font-size:1.05rem;line-height:1.8}
-.demands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px}
-.demand-item{background:#fff;padding:22px 15px;border-radius:14px;text-align:center;box-shadow:var(--shadow-soft);transition:var(--transition-smooth)}
-.demand-item:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+
+.demand-item{background:#fff;padding:22px 15px;border-radius:14px;text-align:center;box-shadow:var(--shadow-soft);transition:var(--transition-smooth);cursor:pointer;position:relative}
+.demand-item:hover,.demand-item.active{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.demand-item.active{border:2px solid var(--accent)}
 .demand-item i{font-size:1.6rem;color:var(--accent);margin-bottom:10px;display:block}
 .demand-item span{font-size:.88rem;font-weight:600;color:var(--text)}
-@media(max-width:768px){.demands-grid{grid-template-columns:repeat(2,1fr);gap:15px}}
-@media(max-width:480px){.demands-grid{grid-template-columns:1fr;gap:12px}}
+.demand-item .expand-icon{position:absolute;top:10px;right:12px;font-size:.8rem;color:var(--accent);transition:transform .3s}
+.demand-item.active .expand-icon{transform:rotate(180deg)}
+.demand-expanded{display:none;padding-top:12px;margin-top:12px;border-top:1px solid #eee;font-size:.82rem;color:var(--text-light);line-height:1.6;text-align:left}
+.demand-item.active .demand-expanded{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.demands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:40px;align-items:start}
+@media(max-width:992px){.demands-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.demands-grid{grid-template-columns:1fr}.org-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.demands-grid{gap:12px}}
 
 /* TCC box */
 .tcc-box{background:var(--primary);color:#fff;padding:30px;border-radius:20px;margin-bottom:40px;display:flex;align-items:flex-start;gap:20px}
@@ -160,52 +168,63 @@ img{max-width:100%;display:block}
 .cta-note{color:var(--text-light);font-size:.85rem;margin-top:12px}
 
 /* Organizational grid */
-.org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:40px}
-.org-card{background:#fff;padding:35px 25px;border-radius:16px;box-shadow:var(--shadow-soft);transition:var(--transition-smooth);border-top:3px solid transparent}
-.org-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-top-color:var(--accent)}
+.org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:40px;align-items:start}
+.org-card{background:#fff;padding:35px 25px;border-radius:16px;box-shadow:var(--shadow-soft);transition:var(--transition-smooth);border-top:3px solid transparent;cursor:pointer;position:relative}
+.org-card:hover,.org-card.active{transform:translateY(-6px);box-shadow:var(--shadow-hover);border-top-color:var(--accent)}
+.org-card.active{border-color:var(--primary)}
 .org-card i{font-size:2rem;color:var(--accent);margin-bottom:15px;display:block}
 .org-card h4{margin-bottom:10px;font-size:1.1rem}
 .org-card p{color:var(--text-light);font-size:.9rem;line-height:1.6}
+.org-card .expand-icon{position:absolute;top:20px;right:20px;font-size:.8rem;color:var(--accent);transition:transform .3s}
+.org-card.active .expand-icon{transform:rotate(180deg)}
+.org-expanded{display:none;padding-top:15px;margin-top:15px;border-top:1px solid #eee;font-size:.88rem;color:var(--text-light);line-height:1.7}
+.org-card.active .org-expanded{display:block;animation:fadeIn .3s ease}
 @media(max-width:992px){.org-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.org-grid{grid-template-columns:1fr}}
 
 /* Police highlight */
-.police-highlight{background:linear-gradient(135deg,var(--primary) 0%,#1a2a1e 100%);color:#fff;padding:60px;border-radius:24px;text-align:center;position:relative;overflow:hidden}
+.police-highlight{background:linear-gradient(135deg,var(--primary) 0%,#1a2a1e 100%);color:#fff;padding:60px;border-radius:24px;text-align:center;position:relative;overflow:hidden;cursor:pointer;transition:var(--transition-smooth)}
+.police-highlight:hover,.police-highlight.active{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.police-highlight.active{box-shadow:0 25px 50px rgba(0,0,0,0.25)}
 .police-badge{font-size:3.5rem;margin-bottom:15px;display:block}
 .police-highlight h3{color:var(--accent);font-size:1.8rem;margin-bottom:18px}
 .police-highlight p{max-width:650px;margin:0 auto 25px;opacity:.9;line-height:1.8}
+.police-highlight .expand-icon{position:absolute;top:25px;right:30px;font-size:1rem;color:var(--accent);transition:transform .3s}
+.police-highlight.active .expand-icon{transform:rotate(180deg)}
+.police-highlight .mentoria-expanded{display:none;max-width:650px;margin:0 auto 25px;font-size:.95rem;opacity:.9;line-height:1.8;padding-top:20px;border-top:1px solid rgba(255,255,255,0.15)}
+.police-highlight.active .mentoria-expanded{display:block;animation:fadeIn .3s ease}
 
 /* Mentoria extras */
-.mentoria-extras{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:40px}
-.mentoria-card{background:#fff;padding:35px;border-radius:16px;box-shadow:var(--shadow-soft);transition:var(--transition-smooth)}
-.mentoria-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.mentoria-extras{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:40px;align-items:start}
+.mentoria-card{background:#fff;padding:35px;border-radius:16px;box-shadow:var(--shadow-soft);transition:var(--transition-smooth);cursor:pointer;position:relative}
+.mentoria-card:hover,.mentoria-card.active{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.mentoria-card.active{border:2px solid var(--accent)}
 .mentoria-card i{font-size:2rem;color:var(--accent);margin-bottom:15px;display:block}
 .mentoria-card h4{margin-bottom:10px}
 .mentoria-card p{color:var(--text-light);font-size:.92rem;line-height:1.7}
+.mentoria-card .expand-icon{position:absolute;top:20px;right:20px;font-size:.8rem;color:var(--accent);transition:transform .3s}
+.mentoria-card.active .expand-icon{transform:rotate(180deg)}
+.mentoria-expanded{display:none;padding-top:15px;margin-top:15px;border-top:1px solid #eee;font-size:.88rem;color:var(--text-light);line-height:1.7}
+.mentoria-card.active .mentoria-expanded{display:block;animation:fadeIn .3s ease}
 @media(max-width:768px){.mentoria-extras{grid-template-columns:1fr}.police-highlight{padding:40px 25px}}
 
 /* Contact */
-.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px}
-.contact-info h3{margin-bottom:25px;font-size:1.5rem}
-.contact-item{display:flex;align-items:center;gap:15px;margin-bottom:22px}
-.contact-icon{width:48px;height:48px;background:rgba(125,157,133,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--accent);flex-shrink:0}
-.contact-item div strong{display:block;font-size:.85rem;color:var(--text);margin-bottom:2px}
-.contact-item div span{color:var(--text-light);font-size:.95rem}
-.social-links{margin-top:35px}
-.social-links p{margin-bottom:12px}
-.social-icons{display:flex;gap:12px}
-.social-icons a{width:44px;height:44px;background:rgba(125,157,133,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--accent)}
-.social-icons a:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
-.contact-form{background:#fff;padding:40px;border-radius:20px;box-shadow:var(--shadow-soft)}
-.form-group{margin-bottom:18px}
-.form-group label{display:block;margin-bottom:6px;font-weight:600;font-size:.9rem;color:var(--text)}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:13px 16px;border:1px solid #e0e0e0;border-radius:10px;font-family:var(--font-body);font-size:.95rem;transition:border-color .3s;background:#fafafa}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(125,157,133,.1)}
-.form-consent{font-size:.85rem;color:var(--text-light)}
-.consent-label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;line-height:1.5}
-.consent-label input[type="checkbox"]{margin-top:4px;accent-color:var(--accent)}
-.consent-label a{color:var(--accent);text-decoration:underline}
-@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:40px}.contact-form{padding:25px}}
+.contact-grid{display:grid;grid-template-columns:1fr;gap:60px;max-width:800px;margin:0 auto}
+.contact-info h3{margin-bottom:15px;font-size:2rem}
+.contact-intro{color:var(--text-light);font-size:1.05rem;margin-bottom:40px;line-height:1.7}
+.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:35px}
+.contact-card{background:#fff;padding:28px 22px;border-radius:16px;box-shadow:var(--shadow-soft);transition:var(--transition-smooth);display:flex;align-items:flex-start;gap:16px;text-align:left;border:2px solid transparent}
+.contact-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+.contact-card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.contact-card:nth-child(1) .contact-card-icon{background:rgba(37,211,102,.12);color:#25D366}
+.contact-card:nth-child(2) .contact-card-icon{background:rgba(0,120,212,.12);color:#0078D4}
+.contact-card:nth-child(3) .contact-card-icon{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;font-size:1.2rem}
+.contact-card:nth-child(3):hover .contact-card-icon{transform:scale(1.1)}
+.contact-card strong{display:block;font-size:.95rem;color:var(--text);margin-bottom:4px}
+.contact-card span{color:var(--text-light);font-size:.9rem;display:block;margin-bottom:6px}
+.contact-card small{color:var(--accent);font-size:.8rem;font-weight:600}
+.contact-note{color:var(--text-light);font-size:.9rem;text-align:center}
+@media(max-width:768px){.contact-cards{grid-template-columns:1fr;gap:15px}}
 
 /* WhatsApp Float */
 .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:1000;transition:var(--transition-smooth)}

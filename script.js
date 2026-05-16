@@ -1,4 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Expandable cards - Clinical, Organizational and Mentoring
+    document.querySelectorAll('.demand-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.demand-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('.org-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = card.classList.contains('active');
+            document.querySelectorAll('.org-card').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
+        });
+    });
+
+    document.querySelectorAll('.mentoria-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = card.classList.contains('active');
+            document.querySelectorAll('.mentoria-card').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
+        });
+    });
+
+    const policeHighlight = document.getElementById('police-mentorship');
+    if (policeHighlight) {
+        policeHighlight.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.closest('a')) return;
+            policeHighlight.classList.toggle('active');
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.demand-item') && !e.target.closest('.org-card') && !e.target.closest('.mentoria-card') && !e.target.closest('#police-mentorship')) {
+            document.querySelectorAll('.demand-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.org-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.mentoria-card').forEach(m => m.classList.remove('active'));
+            if (policeHighlight) policeHighlight.classList.remove('active');
+        }
+    });
+
     // 1. Scroll animations (IntersectionObserver)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
@@ -91,4 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
     }
+
+    
 });
