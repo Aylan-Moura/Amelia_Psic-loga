@@ -137,5 +137,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    
+    // 7. Mobile Carousel for Clinical Demands
+    const demandsGrid = document.querySelector('.demands-grid');
+    let carouselInterval;
+    let isCarouselPaused = false;
+
+    const startMobileCarousel = () => {
+        if (window.innerWidth <= 600 && demandsGrid) {
+            if (!carouselInterval) {
+                const items = demandsGrid.querySelectorAll('.demand-item');
+                let currentIndex = 0;
+                
+                carouselInterval = setInterval(() => {
+                    if (isCarouselPaused) return;
+                    currentIndex++;
+                    if (currentIndex >= items.length) currentIndex = 0;
+                    
+                    const itemWidth = items[0].offsetWidth + 15; // width + gap
+                    demandsGrid.scrollTo({
+                        left: currentIndex * itemWidth,
+                        behavior: 'smooth'
+                    });
+                }, 1500);
+
+                // Pause on interaction
+                demandsGrid.addEventListener('touchstart', () => isCarouselPaused = true, { passive: true });
+                demandsGrid.addEventListener('touchend', () => {
+                    setTimeout(() => isCarouselPaused = false, 3000); // Resume after 3s
+                }, { passive: true });
+            }
+        } else {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+            }
+        }
+    };
+
+    startMobileCarousel();
+    window.addEventListener('resize', startMobileCarousel);
 });
